@@ -1,0 +1,56 @@
+Description:
+-----------
+
+x1- Learn the basics
+ *With AWS CLI
+
+  x- List one rds, and get the raw json.
+    R:
+       aws rds describe-db-instances --max-items 1
+       aws rds describe-db-instances --db-instance-identifier airflow
+  x- Put it on iPython and extract the TerminationProtection value.
+  
+  x- change the definition with aws cli
+    R: aws rds modify-db-instance --db-instance-identifier airflow \
+       --deletion-protection true --apply-immediately
+
+  ----------------------------------------------------
+
+x2- Do the same, but programaticaly
+
+  x- List one rds, and get the raw json.
+    R:
+      db_list = client.describe_db_instances(DBInstanceIdentifier)
+      rds_airflow = client.describe_db_instances(DBInstanceIdentifier='airflow')[0]
+  
+  x- Put it on iPython and extract the TerminationProtection value.
+    R: rds_airflow['DeletionProtection']
+  
+  - change the definition
+client.modify_db_instance(DBInstanceIdentifier='airflow', DeletionProtection=False, 
+  ApplyImmediately=True)
+
+  ----------------------------------------------------
+
+x3- Create a mechanism that create a list with the rds without termination 
+  protection.
+
+  ----------------------------------------------------
+
+4- See the best practices with aws sdk
+
+  ----------------------------------------------------
+
+5- Best practices with python
+
+  ----------------------------------------------------
+
+6- OOP
+
+  ----------------------------------------------------
+
+7- Create a frontend dashboard the show the rds and the value the
+   termination protection.
+
+  ----------------------------------------------------
+
